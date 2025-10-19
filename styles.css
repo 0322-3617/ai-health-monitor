@@ -1,0 +1,423 @@
+/* === Global Styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7B61FF, #00E5FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* === Container & Hero === */
+.container {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1.2s ease;
+}
+
+.image-area {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-img {
+  width: 100px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* === Text === */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  color: #00E5FF;
+}
+
+p {
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* === Button === */
+.get-started-btn {
+  padding: 14px 40px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #00E5FF, #7B61FF);
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+.get-started-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.hero-img {
+  mix-blend-mode: multiply;
+  background: transparent;
+}
+
+
+/*----------------------------------------------------------------------*/
+
+
+/* === Sign In Page Styles === */
+.signin-container {
+  padding: 60px 40px;
+}
+
+.signin-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.signin-subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 35px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1rem;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
+}
+
+.signup-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.signup-link a {
+  color: #00E5FF;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+/* === Sign Up Page Adjustments === */
+.signin-form {
+  gap: 15px;
+}
+
+.input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+/* === 🔙 Back Button Style (upper-left corner) === */
+.back-btn {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+
+
+
+
+/* === DASHBOARD LAYOUT === */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a0033, #003366);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🧭 Sidebar */
+.sidebar {
+  width: 240px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.logo span {
+  color: #00e5ff;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 📊 Main Content */
+.main-content {
+  flex: 1;
+  padding: 50px;
+  overflow-y: auto;
+}
+
+.dashboard-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.dashboard-header p {
+  color: #d0d0d0;
+  margin-bottom: 30px;
+}
+
+/* 💖 Health Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.card span {
+  font-size: 16px;
+  color: #00e5ff;
+}
+
+/* 📈 Chart Section */
+.chart-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.chart-section h2 {
+  margin-bottom: 20px;
+}
+
+.chart-placeholder {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 60px;
+  color: #bbb;
+  font-size: 16px;
+}
+
+
+
+/* 🌙 Dark Mode */
+body.dark-mode {
+  background: #0a0a0a;
+  color: #fff;
+}
+body.dark-mode .card,
+body.dark-mode .sidebar,
+body.dark-mode .chart-placeholder {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+
+/* 🌙 Dark Mode Toggle (keeps same glass style, just darker tint) */
+body.dark-mode {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #fff;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Glass panels retain same transparency */
+body.dark-mode .card,
+body.dark-mode .sidebar,
+body.dark-mode .chart-placeholder,
+body.dark-mode .signin-container,
+body.dark-mode .settings-section,
+body.dark-mode .logs-table {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Keep buttons & highlights consistent */
+body.dark-mode .get-started-btn,
+body.dark-mode .back-btn {
+  background: rgba(0, 229, 255, 0.25);
+  color: #fff;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .get-started-btn:hover,
+body.dark-mode .back-btn:hover {
+  background: rgba(0, 229, 255, 0.4);
+}
+
+/* Maintain sidebar accent color */
+body.dark-mode .sidebar .logo span {
+  color: #00e5ff;
+}
+
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.settings-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.chart-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 10px;
+}
+body.dark .chart-container {
+  background: rgba(0, 0, 0, 0.3);
+}
+.chart-container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 10px;
+  backdrop-filter: blur(8px);
+}
+
+body.dark .chart-container {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.chart-section h2 {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
