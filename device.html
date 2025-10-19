@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Device | AI Health Monitor</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #0a0f2c, #1e215d);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .device-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 60px;
+    }
+
+    .device-card, .device-info {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      width: 360px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .device-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .device-icon {
+      width: 60px;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
+    .device-info {
+      width: 400px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .device-info.hidden {
+      display: none;
+    }
+
+    .get-started-btn {
+      background: linear-gradient(90deg, #00E5FF, #6C63FF);
+      border: none;
+      padding: 15px 35px;
+      color: white;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .get-started-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    }
+
+    .loading-spinner {
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top: 4px solid #00E5FF;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .connected {
+      color: #00E676;
+      font-weight: 600;
+    }
+
+    .dark-mode .device-card,
+    .dark-mode .device-info {
+      background: rgba(30, 30, 30, 0.6);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🔙 Back Button -->
+  <button class="back-btn" onclick="window.location.href='dashboard.html'">← Back</button>
+
+  <div class="dashboard-container">
+    <!-- 🧭 Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">AI<span>Health</span></h2>
+      <nav class="nav-links">
+        <a href="./dashboard.html">🏠 Dashboard</a>
+        <a href="./healthlogs.html">📋 Health Logs</a>
+        <a href="./settings.html">⚙️ Settings</a>
+        <a href="./device.html" class="active">🔌 Device</a>
+        <a href="./signin.html">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- 📡 Device Page -->
+    <main class="main-content">
+      <section class="device-section">
+        <div class="device-card">
+          <img src="images/device.png" alt="Device Icon" class="device-icon" />
+          <h2>AI Health Device</h2>
+          <p id="device-status">🔴 No device connected</p>
+          <div id="loading" class="loading-spinner hidden"></div>
+          <button class="get-started-btn" id="connect-btn">🔗 Connect Device</button>
+        </div>
+
+        <!-- Hidden info -->
+        <div class="device-info hidden" id="device-info">
+          <h3>Device Information</h3>
+          <ul>
+            <li><strong>Device Name:</strong> AIHealth Sensor V2</li>
+            <li><strong>Status:</strong> ✅ Connected</li>
+            <li><strong>Battery:</strong> 87%</li>
+            <li><strong>Last Sync:</strong> Just now</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const connectBtn = document.getElementById('connect-btn');
+    const statusText = document.getElementById('device-status');
+    const deviceInfo = document.getElementById('device-info');
+    const loading = document.getElementById('loading');
+
+    connectBtn.addEventListener('click', () => {
+      // Start "loading" animation
+      statusText.textContent = '🕐 Connecting...';
+      loading.classList.remove('hidden');
+      deviceInfo.classList.add('hidden');
+      connectBtn.disabled = true;
+      connectBtn.textContent = 'Connecting...';
+
+      // Simulate 3s delay (like searching for device)
+      setTimeout(() => {
+        const success = Math.random() > 0.3; // 70% chance to "connect"
+
+        loading.classList.add('hidden');
+        connectBtn.disabled = false;
+
+        if (success) {
+          statusText.innerHTML = '✅ <span class="connected">Device Connected Successfully!</span>';
+          deviceInfo.classList.remove('hidden');
+          connectBtn.textContent = 'Reconnect Device';
+        } else {
+          statusText.textContent = '🔴 No device detected';
+          alert('No device detected. Please connect your AI Health Device.');
+          connectBtn.textContent = 'Try Again';
+        }
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

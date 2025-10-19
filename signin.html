@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | AI Health Monitor</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- 🔙 Back Button -->
+  <button class="back-btn" onclick="window.location.href='signup.html'">← Back</button>
+
+  <div class="container signin-container">
+    <div class="hero">
+      <img src="images/medical.png" alt="Medical Icon" class="hero-img" />
+
+      <h1 class="signin-title">Welcome Back</h1>
+      <p class="signin-subtitle">Sign in to continue your health journey</p>
+
+      <form class="signin-form" onsubmit="signInUser(event)">
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password" required />
+        </div>
+
+        <!-- 🧠 Remember Me -->
+        <div class="remember-me">
+          <label>
+            <input type="checkbox" id="rememberMe" /> Remember Me
+          </label>
+        </div>
+
+        <button class="get-started-btn" type="submit">
+          Sign In
+        </button>
+
+        <p class="signup-link">
+          Don’t have an account?
+          <a href="signup.html">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 🔁 Auto-login if "Remember Me" is active
+    window.onload = function () {
+      const remember = localStorage.getItem("rememberMe");
+      const savedEmail = localStorage.getItem("email");
+      const savedName = localStorage.getItem("username");
+
+      if (remember === "true" && savedEmail) {
+        alert(`👋 Welcome back, ${savedName}! Redirecting to your dashboard...`);
+        window.location.href = "dashboard.html";
+      }
+    };
+
+    function signInUser(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const rememberMe = document.getElementById("rememberMe").checked;
+
+      const savedEmail = localStorage.getItem("email");
+      const savedPassword = localStorage.getItem("password");
+      const savedName = localStorage.getItem("username");
+
+      if (!savedEmail || !savedPassword) {
+        alert("⚠️ No account found. Please sign up first.");
+        window.location.href = "signup.html";
+        return;
+      }
+
+      if (email === savedEmail && password === savedPassword) {
+        alert(`✅ Welcome back, ${savedName}!`);
+        localStorage.setItem("rememberMe", rememberMe ? "true" : "false");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("❌ Invalid email or password. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | AI Health Monitor</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- 🔙 Back Button -->
+  <button class="back-btn" onclick="window.location.href='signin.html'">← Back</button>
+
+  <div class="dashboard-container">
+    <!-- 🧭 Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">AI<span>Health</span></h2>
+      <nav class="nav-links">
+        <a href="./dashboard.html">🏠 Dashboard</a>
+        <a href="./healthlogs.html">📋 Health Logs</a>
+        <a href="./settings.html">⚙️ Settings</a>
+        <a href="./device.html">🔌 Device</a>
+        <a href="#" id="logout-btn">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- 📊 Main Dashboard -->
+    <main class="main-content">
+      <header class="dashboard-header">
+        <h1 id="welcome-text">Welcome, User 👋</h1>
+        <p>Here’s your latest health summary</p>
+      </header>
+
+      <!-- 💖 Health Cards -->
+      <section class="cards">
+        <div class="card">
+          <h3>❤️ Heart Rate</h3>
+          <p class="value">78 <span>BPM</span></p>
+        </div>
+        <div class="card">
+          <h3>💧 Glucose Level</h3>
+          <p class="value">95 <span>mg/dL</span></p>
+        </div>
+        <div class="card">
+          <h3>🌬️ SpO₂</h3>
+          <p class="value">98<span>%</span></p>
+        </div>
+        <div class="card">
+          <h3>🌡️ Body Temp</h3>
+          <p class="value">36.6<span>°C</span></p>
+        </div>
+      </section>
+
+      <!-- 📈 Chart Section -->
+<section class="chart-section">
+  <h2>📈 Weekly Health Trend</h2>
+  <div class="chart-container">
+    <canvas id="healthChart"></canvas>
+  </div>
+</section>
+
+<!-- ✅ Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // 📊 Static weekly data
+  const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Heart Rate (BPM)",
+        data: [78, 80, 76, 82, 79, 77, 81],
+        borderColor: "#ff4d6d",
+        backgroundColor: "rgba(255, 77, 109, 0.2)",
+        tension: 0.4,
+        fill: false,
+      },
+      {
+        label: "Glucose (mg/dL)",
+        data: [95, 97, 94, 96, 99, 93, 98],
+        borderColor: "#00e5ff",
+        backgroundColor: "rgba(0, 229, 255, 0.2)",
+        tension: 0.4,
+        fill: false,
+      },
+      {
+        label: "SpO₂ (%)",
+        data: [98, 97, 99, 98, 98, 97, 99],
+        borderColor: "#00c853",
+        backgroundColor: "rgba(0, 200, 83, 0.2)",
+        tension: 0.4,
+        fill: false,
+      },
+      {
+        label: "Temperature (°C)",
+        data: [36.6, 36.5, 36.7, 36.8, 36.5, 36.6, 36.7],
+        borderColor: "#ffd54f",
+        backgroundColor: "rgba(255, 213, 79, 0.2)",
+        tension: 0.4,
+        fill: false,
+      },
+    ],
+  };
+
+  // 🌓 Detect dark mode from localStorage
+  const isDarkMode = localStorage.getItem("theme") === "dark";
+
+  const chartOptions = {
+    responsive: true,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: isDarkMode ? "#ffffff" : "#000000",
+          font: { size: 13 },
+        },
+      },
+      tooltip: {
+        callbacks: {
+          // 🧠 Add custom units per dataset
+          label: function (context) {
+            let label = context.dataset.label || "";
+            let value = context.parsed.y;
+            if (label.includes("Heart Rate")) return `${label}: ${value} BPM`;
+            if (label.includes("Glucose")) return `${label}: ${value} mg/dL`;
+            if (label.includes("SpO₂")) return `${label}: ${value}%`;
+            if (label.includes("Temperature")) return `${label}: ${value}°C`;
+            return `${label}: ${value}`;
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: isDarkMode ? "#ffffff" : "#000000",
+        },
+        grid: {
+          color: isDarkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+        },
+      },
+      y: {
+        ticks: {
+          color: isDarkMode ? "#ffffff" : "#000000",
+        },
+        grid: {
+          color: isDarkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+        },
+      },
+    },
+    animation: {
+      duration: 1200,
+      easing: "easeInOutQuart",
+    },
+  };
+
+  const ctx = document.getElementById("healthChart").getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: data,
+    options: chartOptions,
+  });
+</script>
+</body>
+</html>
